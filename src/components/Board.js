@@ -29,38 +29,7 @@ export default function Board(props) {
     matrix = placeRandomNumber(matrix);
     const [gameState, setGameState] = useState(matrix);
     const [score, setScore] = useState(0);
-    // console.log(gameState);
 
-
-
-
-    // const getBlankTiles=(gameState)=> {
-    //     const blankTiles = [];
-
-    //     for (let r = 0; r < gameState.length; r++) {
-    //       for (let c = 0; c < gameState[r].length; c++) {
-    //         if (gameState[r][c] === 0) {blankTiles.push([r, c])}
-    //       }
-    //     }
-
-    //     return blankTiles;
-    //   }
-
-    //   const randomNumberToAdd=()=> {
-    //     const options = [2,4];
-    //     const randomNumber = options[Math.floor(Math.random() * options.length)];
-    //     return randomNumber;
-    //   }
-
-
-    //   const placeRandomNumber=(board)=> {
-    //     const blankTiles = getBlankTiles(board);
-
-    //     const randomTile = blankTiles[Math.floor(Math.random() * blankTiles.length)];
-    //     const randomNumber = randomNumberToAdd();
-    //     board[randomTile[0]][randomTile[1]] = randomNumber;
-    //     return board;
-    //   }
     const rotateRight = (matrix) => {
         let result = [];
 
@@ -92,18 +61,15 @@ export default function Board(props) {
     const moveRight = (inputBoard) => {
         let board = [];
         let score = 0;
-        // console.log(inputBoard);
 
         // Shift all numbers to the right
         for (let r = 0; r < inputBoard.length; r++) {
             let row = [];
-            //   console.log("check");      
             for (let c = 0; c < inputBoard[r].length; c++) {
                 let current = inputBoard[r][c];
                 (current === 0) ? row.unshift(current) : row.push(current);
             }
             board.push(row);
-            //   console.log(board);
         }
 
         // Combine numbers and shift to right
@@ -114,10 +80,6 @@ export default function Board(props) {
                     board[r][c - 1] = 0;
                     score += board[r][c];
                 }
-                // else if (board[r][c] === 0 && board[r][c - 1] > 0) {
-                //   board[r][c] = board[r][c - 1];
-                //   board[r][c - 1] = 0;
-                // }
             }
             for (let c = board[r].length - 1; c >= 0; c--) {
                 if (board[r][c] === 0 && board[r][c - 1] > 0) {
@@ -154,10 +116,6 @@ export default function Board(props) {
                     board[r][c + 1] = 0;
                     score += board[r][c];
                 }
-                // else if (board[r][c] === 0 && board[r][c + 1] > 0) {
-                //   board[r][c] = board[r][c + 1];
-                //   board[r][c + 1] = 0;
-                // }
 
 
             }
@@ -200,10 +158,6 @@ export default function Board(props) {
                     board[r][c - 1] = 0;
                     score += board[r][c];
                 }
-                // else if (board[r][c] === 0 && board[r][c - 1] > 0) {
-                //   board[r][c] = board[r][c - 1];
-                //   board[r][c - 1] = 0;
-                // }
             }
             for (let c = board[r].length - 1; c >= 0; c--) {
                 if (board[r][c] === 0 && board[r][c - 1] > 0) {
@@ -244,10 +198,6 @@ export default function Board(props) {
                     board[r][c + 1] = 0;
                     score += board[r][c];
                 }
-                //  else if (board[r][c] === 0 && board[r][c + 1] > 0) {
-                //   board[r][c] = board[r][c + 1];
-                //   board[r][c + 1] = 0;
-                // }
             }
 
             for (let c = 0; c < board.length; c++) {
@@ -270,17 +220,11 @@ export default function Board(props) {
 
 
     useEffect(() => {
-        // let matrix = new Array(props.GridSize).fill(0).map(() => new Array(props.GridSize).fill(0));
-        // matrix=placeRandomNumber(matrix);
-        // setGameState(matrix);
         window.addEventListener('keydown', handleKeyDown);
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         }
     }, [gameState])
-    // useEffect(() => {
-    //     console.log(gameState);
-    // }, [gameState])
     const handleKeyDown = (event) => {
         event.preventDefault();
         if (event.keyCode >= 37 && event.keyCode <= 40) {
